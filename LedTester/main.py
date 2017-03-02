@@ -4,6 +4,7 @@ import argparse
 import urllib.request
 import re
 
+
 def countLights(N, a2d):
     count = 0
     for i in range(N):
@@ -107,17 +108,20 @@ def sanitize(x1, x2, y1, y2, N):
 
 def main() -> object:
     # create parser
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument('--input', help='input help')
-    # args = parser.parse_args()
-    # filename = args.input
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', help='input help')
+    args = parser.parse_args()
+    filename = args.input
 
 
     # read file in to buffer in utf 8 format
-    # uri = filename
-    req = urllib.request.Request("http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt")
+    uri = filename
+    req = urllib.request.Request(filename)
     response = urllib.request.urlopen(req)
     buffer = response.read().decode('utf-8')
+    #buffer = filename
+    #buffer = read_file(filename=filename)
+
 
     a2d = []
     # set size of grid, read each line from file (sep by return)
