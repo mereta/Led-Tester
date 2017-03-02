@@ -9,6 +9,6 @@ setup(name="ledTester",
       licence="GPL3",
       packages=['Assignment3'],
       entry_points={
-        'console_scripts':['LedTester = LedTester.main:main']
+        'console_scripts':['LedTester=LedTester.main:main']
         },
       )
