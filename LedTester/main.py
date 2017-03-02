@@ -167,6 +167,7 @@ def main() -> object:
 
     count = countLights(N, a2d)
     print("Number of lights on ", count)
+    print(filename)
 
     return
 
