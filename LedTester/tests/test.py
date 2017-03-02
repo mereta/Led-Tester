@@ -12,9 +12,6 @@ def test_main():
     DataSource.exists(http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt)
         return
     
-def test_main():
-    assert_equal("turn on", "turn off", "switch")
-
 
 
 

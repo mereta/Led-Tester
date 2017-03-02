@@ -1,0 +1,3 @@
+[console_scripts]
+Assignment3 = ledTester.main:main
+
