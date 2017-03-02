@@ -9,7 +9,7 @@ setup(name="ledTester",
       licence="GPL3",
       packages=['Assignment3'],
       entry_points={
-        'console_scripts':['workspacecomp30670_Java_Assignment3=ledTester.main:main']
+        'console_scripts':['comp30670_Assignment3=ledTester.main:main']
         },
       install_requires=[
           'numpy',
