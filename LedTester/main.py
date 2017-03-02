@@ -94,7 +94,7 @@ def sanitize(x1, x2, y1, y2, N):
     if int(y2) < 0:
         y2 = 0
 
-    if int(x1) > N:
+    if int(x1) >= N:
         x1 = N - 1
     if int(x2) > N:
         x2 = N - 1
