@@ -7,7 +7,7 @@ setup(name="ledTester",
       author="Mereta Degutyte",
       author_email="mereta.degutyte@ucdconnect.ie",
       licence="GPL3",
-      packages=['Assignment3'],
+      packages=['LedTester'],
       entry_points={
         'console_scripts':['LedTester=LedTester.main:main']
         },
