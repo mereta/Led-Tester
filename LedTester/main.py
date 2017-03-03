@@ -50,10 +50,16 @@ def switch(x1, x2, y1, y2, a2d):
 
 
 def split(line):
+
     newCommand = line
+    #newCommand = newCommand.replace(" ", ",")
     newCommand = newCommand.replace("through", "")
     newCommand = newCommand.replace("\n", ",")
-    # newCommand = newCommand.replace(" ", "")
+    if line.startswith(" "):
+        newCommand = newCommand.strip()
+    if newCommand.endswith(" "):
+        #newCommand = newCommand.replace(" ", "\n")
+        newCommand = newCommand.strip()
     x1 = ""
     x2 = ""
     y1 = ""
@@ -61,6 +67,8 @@ def split(line):
     cmd = ""
     #splitval = []
     #print (line)
+    #if newCommand.startswith(" " or "\t"):
+        #newCommand = newCommand.replace(" " or "\t", "")
     if newCommand.startswith('turn on'):
         cmd = "turn on"
         newCommand= newCommand.replace("turn on", "")
@@ -72,7 +80,7 @@ def split(line):
         newCommand = newCommand.replace("switch", "")
 
     if cmd != "":
-        newCommand = newCommand.replace(","," ")
+        newCommand = newCommand.replace(",", " ")
         val = [int(s) for s in newCommand.split() if s.isdigit()]
 
         x1 = val[0]
@@ -116,7 +124,7 @@ def main() -> object:
 
     # read file in to buffer in utf 8 format
     uri = filename
-    req = urllib.request.Request(filename)
+    req = urllib.request.Request('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt')
     response = urllib.request.urlopen(req)
     buffer = response.read().decode('utf-8')
     #buffer = filename
@@ -144,6 +152,7 @@ def main() -> object:
                 if command == "turn on":
 
                     x1, x2, y1, y2 = sanitize(x1, x2, y1, y2, N)
+                    #print(x1, x2, y1, y2)
 
                     if int(x1) <= int(x2) and int(y1) <= int(y2):
                         turnOn(int(x1), int(x2), int(y1), int(y2), a2d)
@@ -152,6 +161,7 @@ def main() -> object:
                 elif command == "turn off":
 
                     x1, x2, y1, y2 = sanitize(x1, x2, y1, y2, N)
+                    #print(x1, x2, y1, y2)
 
                     if int(x1) <= int(x2) and int(y1) <= int(y2):
                         turnOff(int(x1), int(x2), int(y1), int(y2), a2d)
@@ -160,6 +170,7 @@ def main() -> object:
                 elif command == "switch":
 
                     x1, x2, y1, y2 = sanitize(x1, x2, y1, y2, N)
+                    #print(x1, x2, y1, y2)
 
                     if int(x1) <= int(x2) and int(y1) <= int(y2):
                         switch(int(x1), int(x2), int(y1), int(y2), a2d)
@@ -168,6 +179,7 @@ def main() -> object:
     count = countLights(N, a2d)
     print("Number of lights on ", count)
     print(filename)
+
 
     return
 
