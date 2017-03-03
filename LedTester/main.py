@@ -124,7 +124,7 @@ def main() -> object:
 
     # read file in to buffer in utf 8 format
     uri = filename
-    req = urllib.request.Request('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt')
+    req = urllib.request.Request(filename)
     response = urllib.request.urlopen(req)
     buffer = response.read().decode('utf-8')
     #buffer = filename
