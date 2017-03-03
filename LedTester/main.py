@@ -4,7 +4,7 @@ import argparse
 import urllib.request
 import re
 
-
+# Counter Function - counts all the leds on (1) after all commands completed
 def countLights(N, a2d):
     count = 0
     for i in range(N):
@@ -14,7 +14,7 @@ def countLights(N, a2d):
 
     return count
 
-
+# On function turns leds from 0 to 1 in the range of given coordinates
 def turnOn(x1, x2, y1, y2, a2d):
     for i in range(x1, x2 +1):
         for j in range(y1, y2 +1):
@@ -25,7 +25,7 @@ def turnOn(x1, x2, y1, y2, a2d):
 
     return
 
-
+# Off Function turns leds from 1 to 0 in range of coordinates gives
 def turnOff(x1, x2, y1, y2, a2d):
     for i in range(x1, x2 +1):
         for j in range(y1, y2 +1):
@@ -35,7 +35,7 @@ def turnOff(x1, x2, y1, y2, a2d):
    # print('\n')
     return
 
-
+# Switch function swaps lights from 1 to 0 and vice versa, in range of coordainates given.
 def switch(x1, x2, y1, y2, a2d):
     for i in range(x1, x2 +1):
         for j in range(y1, y2 +1):
@@ -48,7 +48,9 @@ def switch(x1, x2, y1, y2, a2d):
    # print('\n')
     return
 
-
+# Split function splits up data from input file provides commands and coordinates, 
+# removes unnecessary words,
+# replaces new lines with commas, trips white spaces at start of line and last command
 def split(line):
 
     newCommand = line
@@ -65,10 +67,8 @@ def split(line):
     y1 = ""
     y2 = ""
     cmd = ""
-    #splitval = []
     #print (line)
-    #if newCommand.startswith(" " or "\t"):
-        #newCommand = newCommand.replace(" " or "\t", "")
+
     if newCommand.startswith('turn on'):
         cmd = "turn on"
         newCommand= newCommand.replace("turn on", "")
@@ -90,7 +90,7 @@ def split(line):
 
     return cmd, x1, x2, y1, y2
 
-
+# Sanitize function checks if coordinates are less than 0 or more than grid range
 def sanitize(x1, x2, y1, y2, N):
 
     if int(x1) < 0:
@@ -113,7 +113,11 @@ def sanitize(x1, x2, y1, y2, N):
 
     return x1, x2, y1, y2
 
-
+# Main function, takes input,
+# Stores data from input in buffer
+# determines grid size by first line, builds 2 dimensional array of 0's
+# Compares commands and calls appropriate functions
+# compares if coordinates from line are appropriate to use i.e x1 < x2 etc
 def main() -> object:
     # create parser
     parser = argparse.ArgumentParser()
@@ -175,7 +179,8 @@ def main() -> object:
                     if int(x1) <= int(x2) and int(y1) <= int(y2):
                         switch(int(x1), int(x2), int(y1), int(y2), a2d)
                     #print(splitVal, splitVal2, splitVal3, x1, x2, y1, y2)
-
+                    
+# Prints count of lights on and filename
     count = countLights(N, a2d)
     print("Number of lights on ", count)
     print(filename)
